@@ -26,18 +26,18 @@ int main() {
         cin >> m;
         cin.ignore();
 
-        long long totalCents = 0;
+        long long total_cents = 0;
 
         while (m--) {
             string line;
             getline(cin, line);
             for (char &a : line) {
-                totalCents += valor[(unsigned char)a];
+                total_cents += valor[(unsigned char)a];
             }
         }
 
-        double totalDollars = totalCents / 100.0;
-        cout << fixed << setprecision(2) << totalDollars << "$" << endl;
+        double total_dollars = total_cents / 100.0;
+        cout << fixed << setprecision(2) << total_dollars << "$" << endl;
     }
     return 0;
 }
