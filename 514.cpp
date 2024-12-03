@@ -20,7 +20,6 @@ bool sim(int n, int arr[]) {
             tc++;
         }
         
-        // Check if we can use the top coach now
         if (!station.empty() && station.top() == arr[cp]) {
             station.pop();
             cp++;
