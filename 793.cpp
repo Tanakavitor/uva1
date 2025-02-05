@@ -1,52 +1,49 @@
 #include <iostream>
 #include <string>
-#include <sstream>
-
 using namespace std;
 
-int set[10000];
+int set[1000];
 
-int findSet(int a) { 
-    return (set[a] == a) ? a : (set[a] = findSet(set[a])); 
+int arefriends(int a) { 
+    return (set[a] == a) ? a : (set[a] = arefriends(set[a])); 
 }
 
-void unionSet(int a, int b) { 
-    set[findSet(a)] = findSet(b); 
+void unionSet(int a, int b) {
+    set[arefriends(a)] = arefriends(b);
 }
 
-bool isConnected(int a, int b) { 
-    return findSet(a) == findSet(b); 
+bool isSameSet(int a, int b) {
+    return arefriends(a) == arefriends(b);
 }
 
 int main() {
-    int n_test;
-    cin >> n_test;
-    cin.ignore();
+    int tc;
+    cin >> tc;
+    cin.ignore();  
+    cin.ignore();  
 
-    while(n_test--) {
-        int num_computers;
-        cin >> num_computers;
-        cin.ignore();
-
-        for(int i = 0; i <= num_computers; ++i) {
+    for(int t = 0; t < tc; t++) {
+        if(t > 0) cout << endl;
+        
+        int n;
+        cin >> n;
+        cin.ignore();  
+        for(int i = 1; i <= n; i++) {
             set[i] = i;
         }
 
-        int successful = 0;
-        int unsuccessful = 0;
         string line;
+        int successful = 0, unsuccessful = 0;
 
         while(getline(cin, line) && !line.empty()) {
             char command;
-            int comp1, comp2;
-            stringstream ss(line);
-            ss >> command >> comp1 >> comp2;
+            int a, b;
+            sscanf(line.c_str(), "%c %d %d", &command, &a, &b);
 
             if(command == 'c') {
-                unionSet(comp1, comp2);
-            }
-            else if(command == 'q') {
-                if(isConnected(comp1, comp2)) {
+                unionSet(a, b);
+            } else if(command == 'q') {
+                if(isSameSet(a, b)) {
                     successful++;
                 } else {
                     unsuccessful++;
@@ -55,7 +52,6 @@ int main() {
         }
 
         cout << successful << "," << unsuccessful << endl;
-        if(n_test) cout << endl;
     }
     return 0;
 }
