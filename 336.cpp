@@ -34,7 +34,6 @@ int main() {
         map<int,vector<int>> graph;
         set<int> nodes;
         
-        // Build undirected graph
         for(int i = 0; i < nc; i++) {
             int u, v;
             cin >> u >> v;
